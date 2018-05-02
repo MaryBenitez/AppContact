@@ -18,4 +18,6 @@
         </activity>
     </application>
     <uses-permission android:name="android.permission.drawable"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
 </manifest>

@@ -1,13 +1,13 @@
 package com.example.maris.appmaryjencontact;
 
-public class DetalleContacto {
+public class Contacto {
 
     private String nombre;
     private String apellido;
     private String direccion;
     private int numero;
 
-    public DetalleContacto(String nombre, String apellido, String direccion, int numero) {
+    public Contacto(String nombre, String apellido, String direccion, int numero) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
