@@ -45,21 +45,19 @@
             android:layout_marginHorizontal="2dp"
             android:layout_marginTop="8dp">
 
-            <Button
-                android:id="@+id/btninfo"
-                android:layout_below="@id/LL1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Información"
-                android:textSize="10dp"
-                android:layout_gravity="center_horizontal"/>
-
             <ImageButton
-                android:id="@+id/btn_fav"
+                android:id="@+id/btn_informacion"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 android:src="@drawable/fav_mar"/>
+
+            <ImageButton
+                android:id="@+id/btn_favorito"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/informacion"/>
 
         </LinearLayout>
     </LinearLayout>
