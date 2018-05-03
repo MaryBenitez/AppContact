@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/LL"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="8dp">
 
     <LinearLayout
+        android:id="@id/LL1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Contacto"
-            android:onClick="btn_rest"/>
+            android:onClick="OnClick"/>
 
         <Button
             android:id="@+id/btnfavorite"
@@ -25,9 +27,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Favoritos"
-            android:onClick="btn_favorites"/>
+            android:onClick="OnClicks"/>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="#000000"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"/>
 
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

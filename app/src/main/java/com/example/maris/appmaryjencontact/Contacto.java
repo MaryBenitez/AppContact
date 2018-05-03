@@ -1,17 +1,19 @@
 package com.example.maris.appmaryjencontact;
 
-public class Contacto {
+import java.io.Serializable;
+
+public class Contacto implements Serializable {
 
     private String nombre;
-    private String apellido;
     private String direccion;
     private int numero;
+    private int imagencontacto;
 
-    public Contacto(String nombre, String apellido, String direccion, int numero) {
+    public Contacto(String nombre, String direccion, int numero, int imagencontacto) {
         this.nombre = nombre;
-        this.apellido = apellido;
         this.direccion = direccion;
         this.numero = numero;
+        this.imagencontacto = imagencontacto;
     }
 
     public String getNombre() {
@@ -19,13 +21,6 @@ public class Contacto {
     }
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public String getDireccion() {
@@ -40,5 +35,12 @@ public class Contacto {
     }
     public void setNumero(int numero) {
         this.numero = numero;
+    }
+
+    public int getImagencontacto() {
+        return imagencontacto;
+    }
+    public void setImagencontacto(int imagencontacto) {
+        this.imagencontacto = imagencontacto;
     }
 }
