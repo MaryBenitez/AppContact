@@ -1,17 +1,18 @@
 package com.example.maris.appmaryjencontact;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Contacto implements Serializable {
 
     private String nombre;
-    private String direccion;
-    private int numero;
+    private ArrayList<String> email, numero;
     private int imagencontacto;
+    private boolean favoritos;
 
-    public Contacto(String nombre, String direccion, int numero, int imagencontacto) {
+    public Contacto(String nombre, ArrayList<String> email, ArrayList<String> numero, int imagencontacto) {
         this.nombre = nombre;
-        this.direccion = direccion;
+        this.email = email;
         this.numero = numero;
         this.imagencontacto = imagencontacto;
     }
@@ -23,17 +24,17 @@ public class Contacto implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public ArrayList<String> getEmail() {
+        return email;
     }
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setEmail(ArrayList<String> email) {
+        this.email = email;
     }
 
-    public int getNumero() {
+    public ArrayList<String> getNumero() {
         return numero;
     }
-    public void setNumero(int numero) {
+    public void setNumero(ArrayList<String> numero) {
         this.numero = numero;
     }
 
@@ -42,5 +43,12 @@ public class Contacto implements Serializable {
     }
     public void setImagencontacto(int imagencontacto) {
         this.imagencontacto = imagencontacto;
+    }
+
+    public boolean isFavoritos() {
+        return favoritos;
+    }
+    public void setFavoritos(boolean favoritos) {
+        this.favoritos = favoritos;
     }
 }
