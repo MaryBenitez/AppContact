@@ -6,15 +6,17 @@ import java.util.ArrayList;
 public class Contacto implements Serializable {
 
     private String nombre;
-    private ArrayList<String> email, numero;
+    private ArrayList<String> email;
+    private ArrayList<String> numero;
     private int imagencontacto;
-    private boolean favoritos;
+    private boolean lista_favoritos;
 
     public Contacto(String nombre, ArrayList<String> email, ArrayList<String> numero, int imagencontacto) {
         this.nombre = nombre;
         this.email = email;
         this.numero = numero;
         this.imagencontacto = imagencontacto;
+        lista_favoritos = false;
     }
 
     public String getNombre() {
@@ -45,10 +47,10 @@ public class Contacto implements Serializable {
         this.imagencontacto = imagencontacto;
     }
 
-    public boolean isFavoritos() {
-        return favoritos;
+    public boolean isLista_favoritos() {
+        return lista_favoritos;
     }
-    public void setFavoritos(boolean favoritos) {
-        this.favoritos = favoritos;
+    public void setLista_favoritos(boolean lista_favoritos) {
+        this.lista_favoritos = lista_favoritos;
     }
 }
