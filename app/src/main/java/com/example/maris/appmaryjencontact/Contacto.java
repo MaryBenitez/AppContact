@@ -13,12 +13,11 @@ public class Contacto implements Serializable {
     private String imagencontacto2;
     private boolean lista_favoritos;
 
-    public Contacto(String nombre, String email, String numero, int imagencontacto, String imagencontacto2) {
+    public Contacto(String nombre, String email, String numero, int imagencontacto) {
         this.nombre = nombre;
         this.email = email;
         this.numero = numero;
         this.imagencontacto = imagencontacto;
-        this.imagencontacto2 = imagencontacto2;
         lista_favoritos = false;
     }
 
@@ -48,13 +47,6 @@ public class Contacto implements Serializable {
     }
     public void setImagencontacto(int imagencontacto) {
         this.imagencontacto = imagencontacto;
-    }
-
-    public String getImagencontacto2() {
-        return imagencontacto2;
-    }
-    public void setImagencontacto2(String imagencontacto2) {
-        this.imagencontacto2 = imagencontacto2;
     }
 
     public boolean isLista_favoritos() {

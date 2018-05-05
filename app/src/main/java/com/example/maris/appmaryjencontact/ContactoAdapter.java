@@ -21,30 +21,22 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
     private Context context;
     private static boolean favorito = false;
 
-    public ArrayList<Contacto> lista1;
-    public ArrayList<Contacto> lista2;
-    //public ContactFilter contactFilter;
 
 
-    public ContactoAdapter(ArrayList<Contacto> contacto, Context context, ArrayList<Contacto> lista){
+    public ContactoAdapter(ArrayList<Contacto> contacto, Context context){
         this.contacto=contacto;
         this.context=context;
-        this.lista1=lista;
-        this.lista2=lista;
-    }
-
-    public ContactoAdapter(Context contacto, List<Contacto> mainActivity) {
     }
 
     @Override
-    public ContactoAdapter.ContactoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardviewcontact,parent,false);
+    public ContactoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardviewcontact, parent,false);
         return (new ContactoViewHolder(view));
     }
 
     public void onBindViewHolder(final ContactoViewHolder holder, final int position){
 
-        //holder.imagen_de_contacto.setImageResource(contacto.get(position).getImagencontacto());
+        holder.imagen_de_contacto.setImageResource(contacto.get(position).getImagencontacto());
         holder.nombre.setText((contacto.get(position).getNombre()));
         holder.boton_informacion.setImageResource(R.drawable.informacion);
 
@@ -85,7 +77,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
 
     }
 
-
+    @Override
     public int getItemCount(){
         return contacto.size();
     }
@@ -97,15 +89,14 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
         TextView nombre;
         ImageButton boton_informacion;
         ImageButton boton_favorito;
-        Contacto contacto;
 
         public ContactoViewHolder(View itemView){
             super(itemView);
 
+            boton_informacion=itemView.findViewById(R.id.btn_informacion);
             cardView=itemView.findViewById(R.id.card_view);
             imagen_de_contacto=itemView.findViewById(R.id.foto);
             nombre=itemView.findViewById(R.id.nombrecontacto);
-            boton_informacion=itemView.findViewById(R.id.btn_informacion);
             boton_favorito=itemView.findViewById(R.id.btn_favorito);
 
         }

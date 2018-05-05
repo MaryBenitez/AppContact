@@ -2,7 +2,7 @@
 
 
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="160dp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -34,7 +34,7 @@
             android:singleLine="true"
             android:ellipsize="end"
             android:text="NOMBRE CONTACTO"
-            android:textSize="10sp"
+            android:textSize="15sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"/>
 
@@ -42,24 +42,24 @@
             android:id="@+id/LL1"
             android:layout_below="@id/foto"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:layout_marginHorizontal="2dp"
             android:layout_marginTop="8dp">
 
             <ImageButton
                 android:id="@+id/btn_informacion"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/fav_mar"/>
+                android:src="@drawable/informacion"/>
 
             <ImageButton
                 android:id="@+id/btn_favorito"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
+                android:layout_width="55dp"
+                android:layout_height="50dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/informacion"/>
+                android:src="@drawable/fav_mar"/>
 
         </LinearLayout>
     </LinearLayout>

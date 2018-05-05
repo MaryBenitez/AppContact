@@ -30,21 +30,11 @@ public class MainActivity extends AppCompatActivity {
     Button contactos;
     Button favoritos;
 
-    CircleImageView imagenc;
+    /*CircleImageView imagenc;
     TextView nombrec;
-    TextView direccion;
+    TextView email;
     ImageButton compartir;
-    ImageButton llamada;
-
-    public MainActivity(RecyclerView rv, ContactoAdapter adapter, ArrayList<Contacto> contacto, ArrayList<Contacto> contacto2, LinearLayoutManager lm, Button contactos, Button favoritos) {
-        this.rv = rv;
-        this.adapter = adapter;
-        this.contacto = contacto;
-        this.contacto2 = contacto2;
-        this.lm = lm;
-        this.contactos = contactos;
-        this.favoritos = favoritos;
-    }
+    ImageButton llamada;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,22 +46,19 @@ public class MainActivity extends AppCompatActivity {
         contactos = findViewById(R.id.btncontac);
         favoritos = findViewById(R.id.btnfavorite);
 
-        imagenc = (CircleImageView) findViewById(R.id.foto);
-        nombrec = (TextView) findViewById(R.id.nombrecontacto);
-        compartir = (ImageButton) findViewById(R.id.btn_compartir);
-        llamada = (ImageButton) findViewById(R.id.btn_llamar);
-
         rv=findViewById(R.id.recycler);
         rv.setHasFixedSize(true);
 
         lm=new LinearLayoutManager(this);
         rv.setLayoutManager(lm);
 
-        adapter=new ContactoAdapter(contacto,this);
+        ContactosQuemados();
+
+        adapter=new ContactoAdapter(contacto, this);
 
         //EXTRASHENDO CONTACTOS
 
-        ArrayList<String> nombres_contacto = new ArrayList<String>();
+        /*ArrayList<String> nombres_contacto = new ArrayList<String>();
         ArrayList<String> numeros_contacto = new ArrayList<String>();
 
         String[] projeccion = new String[] { ContactsContract.Data._ID, ContactsContract.Data.DISPLAY_NAME,
@@ -101,19 +88,30 @@ public class MainActivity extends AppCompatActivity {
         datos.putStringArrayList("Numero",numeros_contacto);
 
         ContactoFragment fragmentContact = new ContactoFragment();
-        fragmentContact.setArguments(datos);
+        fragmentContact.setArguments(datos);*/
 
     }
 
+    public void ContactosQuemados(){
+        String TAG = "Mensaje";
+        contacto = new ArrayList<>();
+
+        contacto.add(new Contacto("Marisol Benitez\n","00094716@uca.edu.sv\n","77951321",R.drawable.contact));
+        contacto.add(new Contacto("Marisol D\n","00094716@uca.edu.sv\n","77951321",R.drawable.contact));
+        contacto.add(new Contacto("Marisol E\n","00094716@uca.edu.sv\n","77951321",R.drawable.contact));
+        contacto.add(new Contacto("Marisol V\n","00094716@uca.edu.sv \n","77951321",R.drawable.contact));
+
+    }
 
     public void CONTACTOS(View view){
         adapter.setF();
-        adapter=new ContactoAdapter(contacto, (MainActivity) view.getContext());
+        adapter=new ContactoAdapter(contacto, view.getContext());
         rv.setAdapter(adapter);
     }
     public void FAVORITO(View view){
         adapter.setT();
-        adapter=new ContactoAdapter(contacto2, (MainActivity) view.getContext());
+        adapter=new ContactoAdapter(contacto2, view.getContext());
+        rv.setAdapter(adapter);
     }
 
     public void agregar_favorito(Contacto list_fav){
@@ -129,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         }
         contacto2.remove(cont);
         if (adapter.Addfavorito()){
-            adapter=new ContactoAdapter(contacto2,this);
+            adapter=new ContactoAdapter(contacto2, this);
             rv.setAdapter(adapter);
         }
     }

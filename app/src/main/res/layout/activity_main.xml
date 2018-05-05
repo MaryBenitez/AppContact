@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Contacto"
-            android:onClick="OnClick"/>
+            android:onClick="CONTACTOS"/>
 
         <Button
             android:id="@+id/btnfavorite"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Favoritos"
-            android:onClick="OnClicks"/>
+            android:onClick="FAVORITO"/>
 
     </LinearLayout>
 
