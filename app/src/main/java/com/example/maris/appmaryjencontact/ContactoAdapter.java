@@ -1,22 +1,17 @@
 package com.example.maris.appmaryjencontact;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Filter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -38,7 +33,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
         this.lista2=lista;
     }
 
-    public ContactoAdapter(ArrayList<Contacto> contacto, MainActivity mainActivity) {
+    public ContactoAdapter(Context contacto, List<Contacto> mainActivity) {
     }
 
     @Override

@@ -7,13 +7,13 @@ public class Contacto implements Serializable {
 
     private String nombre;
     private String email;
-    private ArrayList<String> numero;
+    private String numero;
     public static String KEY = "KEY";
     private int imagencontacto;
     private String imagencontacto2;
     private boolean lista_favoritos;
 
-    public Contacto(String nombre, String email, ArrayList<String> numero, int imagencontacto, String imagencontacto2) {
+    public Contacto(String nombre, String email, String numero, int imagencontacto, String imagencontacto2) {
         this.nombre = nombre;
         this.email = email;
         this.numero = numero;
@@ -36,10 +36,10 @@ public class Contacto implements Serializable {
         this.email = email;
     }
 
-    public ArrayList<String> getNumero() {
+    public String getNumero() {
         return numero;
     }
-    public void setNumero(ArrayList<String> numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
