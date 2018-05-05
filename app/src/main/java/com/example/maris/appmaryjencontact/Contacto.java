@@ -6,16 +6,19 @@ import java.util.ArrayList;
 public class Contacto implements Serializable {
 
     private String nombre;
-    private ArrayList<String> email;
+    private String email;
     private ArrayList<String> numero;
+    public static String KEY = "KEY";
     private int imagencontacto;
+    private String imagencontacto2;
     private boolean lista_favoritos;
 
-    public Contacto(String nombre, ArrayList<String> email, ArrayList<String> numero, int imagencontacto) {
+    public Contacto(String nombre, String email, ArrayList<String> numero, int imagencontacto, String imagencontacto2) {
         this.nombre = nombre;
         this.email = email;
         this.numero = numero;
         this.imagencontacto = imagencontacto;
+        this.imagencontacto2 = imagencontacto2;
         lista_favoritos = false;
     }
 
@@ -26,10 +29,10 @@ public class Contacto implements Serializable {
         this.nombre = nombre;
     }
 
-    public ArrayList<String> getEmail() {
+    public String getEmail() {
         return email;
     }
-    public void setEmail(ArrayList<String> email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -45,6 +48,13 @@ public class Contacto implements Serializable {
     }
     public void setImagencontacto(int imagencontacto) {
         this.imagencontacto = imagencontacto;
+    }
+
+    public String getImagencontacto2() {
+        return imagencontacto2;
+    }
+    public void setImagencontacto2(String imagencontacto2) {
+        this.imagencontacto2 = imagencontacto2;
     }
 
     public boolean isLista_favoritos() {

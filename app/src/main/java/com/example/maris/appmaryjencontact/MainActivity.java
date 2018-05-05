@@ -36,6 +36,16 @@ public class MainActivity extends AppCompatActivity {
     ImageButton compartir;
     ImageButton llamada;
 
+    public MainActivity(RecyclerView rv, ContactoAdapter adapter, ArrayList<Contacto> contacto, ArrayList<Contacto> contacto2, LinearLayoutManager lm, Button contactos, Button favoritos) {
+        this.rv = rv;
+        this.adapter = adapter;
+        this.contacto = contacto;
+        this.contacto2 = contacto2;
+        this.lm = lm;
+        this.contactos = contactos;
+        this.favoritos = favoritos;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
         imagenc = (CircleImageView) findViewById(R.id.foto);
         nombrec = (TextView) findViewById(R.id.nombrecontacto);
-        direccion = (TextView) findViewById(R.id.direccion);
-        compartir = (ImageButton) findViewById(R.id.btn_share);
-        llamada = (ImageButton) findViewById(R.id.btn_call);
-
-        contactos.setOnClickListener(this);
-        llamada.setOnClickListener(this);
+        compartir = (ImageButton) findViewById(R.id.btn_compartir);
+        llamada = (ImageButton) findViewById(R.id.btn_llamar);
 
         rv=findViewById(R.id.recycler);
         rv.setHasFixedSize(true);
@@ -63,73 +69,51 @@ public class MainActivity extends AppCompatActivity {
 
         adapter=new ContactoAdapter(contacto,this);
 
-        list_contactos = new ArrayList<>();
-        list_contactos.add(new Contacto("PRIMER EJEMPLO","PRIMERA DIRECCION",77777777,R.drawable.contact));
-        list_contactos.add(new Contacto("SEGUNDO EJEMPLO","SEGUNDO DIRECCION",77777778,R.drawable.contact));
-        list_contactos.add(new Contacto("TERCERO EJEMPLO","TERCERO DIRECCION",77777779,R.drawable.contact));
+        //EXTRASHENDO CONTACTOS
 
-        RecyclerView rv = (RecyclerView) findViewById(R.id.recycler);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this,list_contactos);
-        rv.setLayoutManager(new GridLayoutManager(this,1));
-        rv.setAdapter(adapter);
+        ArrayList<String> nombres_contacto = new ArrayList<String>();
+        ArrayList<String> numeros_contacto = new ArrayList<String>();
 
-    }
+        String[] projeccion = new String[] { ContactsContract.Data._ID, ContactsContract.Data.DISPLAY_NAME,
+                ContactsContract.CommonDataKinds.Phone.NUMBER, ContactsContract.CommonDataKinds.Phone.TYPE };
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btncontac:
-                ObtenerContactos();
-                break;
-            case R.id.btn_call:
-                ObtenerLlamada();
-                break;
-            default:
-                break;
-        }
-    }
+        String selectionClause = ContactsContract.Data.MIMETYPE + "='" +
+                ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE + "' AND "
+                + ContactsContract.CommonDataKinds.Phone.NUMBER + " IS NOT NULL";
 
-    public void ObtenerLlamada(){
-        Uri u;
-
-        u=Uri.parse("content://call_log/call");
-        String[] projeccion = new String[]{CallLog.Calls.TYPE, CallLog.Calls.NUMBER, CallLog.Calls.DURATION};
-
-        Cursor c=getContentResolver().query(u,projeccion,null,null,null);
-        nombrec.setText("");
-
-        while (c.moveToNext()){
-            nombrec.append("Tipo: "+c.getString(0)+"Numero: "+c.getString(1)+"Duracion: "+c.getString(2)+"\n");
-        }
-
-        c.close();
-    }
-
-    public void ObtenerContactos(){
-
-
-        String[] projeccion = new String[] { ContactsContract.Data._ID, ContactsContract.Data.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER, ContactsContract.CommonDataKinds.Phone.TYPE };
-        String selectionClause = ContactsContract.Data.MIMETYPE + "='" + ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE + "' AND " + ContactsContract.CommonDataKinds.Phone.NUMBER + " IS NOT NULL";
         String sortOrder = ContactsContract.Data.DISPLAY_NAME + " ASC";
 
-        Cursor c=getContentResolver().query(ContactsContract.Data.CONTENT_URI,projeccion,selectionClause,null,sortOrder);
-        nombrec.setText("");
+        Cursor c = getContentResolver().query(
+                ContactsContract.Data.CONTENT_URI,
+                projeccion,
+                selectionClause,
+                null,
+                sortOrder);
 
-        while (c.moveToNext()){
-            nombrec.append("Nombre: "+c.getString(0)+"Doreccion: "+c.getString(1)+"Numero: "+c.getString(2)+"\n");
+        while(c.moveToNext()){
+            nombres_contacto.add(c.getString(1));
+            numeros_contacto.add(c.getString(2));
         }
-
         c.close();
+
+        Bundle datos = new Bundle();
+        datos.putStringArrayList("Nombre",nombres_contacto);
+        datos.putStringArrayList("Numero",numeros_contacto);
+
+        ContactoFragment fragmentContact = new ContactoFragment();
+        fragmentContact.setArguments(datos);
+
     }
+
 
     public void CONTACTOS(View view){
         adapter.setF();
-        adapter=new ContactoAdapter(contacto,view.getContext());
+        adapter=new ContactoAdapter(contacto, (MainActivity) view.getContext());
         rv.setAdapter(adapter);
     }
     public void FAVORITO(View view){
         adapter.setT();
-        adapter=new ContactoAdapter(contacto2,view.getContext());
+        adapter=new ContactoAdapter(contacto2, (MainActivity) view.getContext());
     }
 
     public void agregar_favorito(Contacto list_fav){
@@ -139,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         int cont=0;
         for(Contacto contacto : contacto2){
             if (contacto.getNombre() == no_list_fav){
-                break;;
+                break;
             }
             cont++;
         }
