@@ -40,17 +40,6 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
         holder.nombre.setText((contacto.get(position).getNombre()));
         holder.boton_informacion.setImageResource(R.drawable.informacion);
 
-        /*
-        //poner imagen por defecto si no posee foto
-        holder.contacto = lista1.get(position);
-        if (lista1.get(position).getImagencontacto2() != null ){
-            holder.imagen_de_contacto.setImageURI(Uri.parse(lista1.get(position).getImagencontacto2()));
-        }
-        else {
-            holder.imagen_de_contacto.setImageResource(R.drawable.contact);
-        }*/
-
-
         //SECCION DE FAVORITOS
         if (contacto.get(position).isLista_favoritos()){
             holder.boton_favorito.setImageResource(R.drawable.fav_mar);

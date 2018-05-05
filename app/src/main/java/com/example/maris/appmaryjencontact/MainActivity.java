@@ -1,6 +1,7 @@
 package com.example.maris.appmaryjencontact;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.CallLog;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +28,12 @@ public class MainActivity extends AppCompatActivity {
     ContactoAdapter adapter;
     ArrayList<Contacto> contacto;
     ArrayList<Contacto> contacto2;
+    ArrayList<Contacto> lista;
     LinearLayoutManager lm;
     Button contactos;
     Button favoritos;
 
+    private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
     /*CircleImageView imagenc;
     TextView nombrec;
     TextView email;
@@ -52,14 +56,15 @@ public class MainActivity extends AppCompatActivity {
         lm=new LinearLayoutManager(this);
         rv.setLayoutManager(lm);
 
-        ContactosQuemados();
+        addContacts();
+        //ContactosQuemados();
 
         adapter=new ContactoAdapter(contacto, this);
 
-        //EXTRASHENDO CONTACTOS
+        //LEYENDO LOS CONTACTOS
 
-        /*ArrayList<String> nombres_contacto = new ArrayList<String>();
-        ArrayList<String> numeros_contacto = new ArrayList<String>();
+        /*ArrayList<String> nombres_contacto = new ArrayList<>();
+        ArrayList<String> numeros_contacto = new ArrayList<>();
 
         String[] projeccion = new String[] { ContactsContract.Data._ID, ContactsContract.Data.DISPLAY_NAME,
                 ContactsContract.CommonDataKinds.Phone.NUMBER, ContactsContract.CommonDataKinds.Phone.TYPE };
@@ -85,11 +90,34 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle datos = new Bundle();
         datos.putStringArrayList("Nombre",nombres_contacto);
-        datos.putStringArrayList("Numero",numeros_contacto);
+        datos.putStringArrayList("Numero",numeros_contacto);*/
 
-        ContactoFragment fragmentContact = new ContactoFragment();
-        fragmentContact.setArguments(datos);*/
+    }
 
+    public void addContacts() {
+        try {
+            Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME+" ASC");
+            while (phones.moveToNext()) {
+                String nombre = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                String email = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
+                String numero = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                lista.add(new Contacto(nombre, email, numero,R.drawable.contact));
+            }
+            phones.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions,int[] grantResults) {
+        if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission is granted
+                addContacts();
+            } else {
+                Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     public void ContactosQuemados(){
