@@ -58,7 +58,8 @@
         android:layout_height="match_parent"
         tools:context="com.example.maris.appmaryjencontact.MainActivity"
         android:scrollbars="vertical"
-        android:id="@+id/recycler">
+        android:id="@+id/recycler"
+        android:layout_margin="8dp">
 
     </android.support.v7.widget.RecyclerView>
 
