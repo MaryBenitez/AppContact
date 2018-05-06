@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Contacto"
+            android:text="@string/contacto"
             android:onClick="CONTACTOS"/>
 
         <Button
@@ -26,7 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Favoritos"
+            android:text="@string/favoritos"
             android:onClick="FAVORITO"/>
 
     </LinearLayout>

@@ -45,7 +45,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
         holder.nombre.setText((contacto.get(position).getNombre()));
 
 
-        //holder.boton_informacion.setImageResource(R.drawable.informacion);
+        holder.boton_informacion.setImageResource(R.drawable.informacion);
 
         //SECCION DE FAVORITOS
         if (contacto.get(position).isLista_favoritos()){
