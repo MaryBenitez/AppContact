@@ -48,11 +48,6 @@ public class MainActivity extends AppCompatActivity {
         favoritos = findViewById(R.id.btnfavorite);
 
         addContacts();
-        //ContactosQuemados();
-
-        contacto.add(new Contacto("Marisol","77951321",R.drawable.contact));
-        contacto.add(new Contacto("Gerardo","77951321",R.drawable.contact));
-
 
         rv=findViewById(R.id.recycler);
         adapter=new ContactoAdapter(this, contacto);
@@ -68,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
             Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME+" ASC");
             while (phones.moveToNext()) {
                 String nombre = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-                //String email = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
+                String email = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
                 String numero = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                 Log.d("LEL",nombre+" " +numero);
-                contacto.add(new Contacto(nombre,numero,R.drawable.contact));
+                contacto.add(new Contacto(nombre,email,numero,R.drawable.contact));
             }
             phones.close();
         } catch (Exception e) {

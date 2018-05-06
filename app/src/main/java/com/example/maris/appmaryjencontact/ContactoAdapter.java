@@ -1,6 +1,7 @@
 package com.example.maris.appmaryjencontact;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -43,9 +44,25 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
 
         holder.imagen_de_contacto.setImageResource(contacto.get(position).getImagencontacto());
         holder.nombre.setText((contacto.get(position).getNombre()));
-
-
         holder.boton_informacion.setImageResource(R.drawable.informacion);
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent= new Intent(context,ContactoActivity.class);
+
+                //pasando datos para ContactoActivity
+                intent.putExtra("Nombre",contacto.get(position).getNombre());
+                intent.putExtra("Email",contacto.get(position).getEmail());
+                intent.putExtra("Numero",contacto.get(position).getNumero());
+                intent.putExtra("Imagen",contacto.get(position).getImagencontacto());
+
+                //Iniciando la actividad
+                context.startActivity(intent);
+
+            }
+        });
 
         //SECCION DE FAVORITOS
         if (contacto.get(position).isLista_favoritos()){
