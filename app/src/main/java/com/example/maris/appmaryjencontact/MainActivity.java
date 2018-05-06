@@ -8,8 +8,12 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -24,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     Button contactos;
     Button favoritos;
 
+    EditText buscar;
+    
+
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 
     @Override
@@ -33,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         contacto = new ArrayList<>();
         contacto2 = new ArrayList<>();
+        buscar = findViewById(R.id.busqueda);
         contactos = findViewById(R.id.btncontac);
         favoritos = findViewById(R.id.btnfavorite);
 
@@ -45,8 +53,27 @@ public class MainActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
         rv.setHasFixedSize(true);
 
+        //aplicando la busqueda
+        buscar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Buscar(editable.toString());
+            }
+        });
+
     }
 
+    //Metodo para extraer contactos
     public void addContacts() {
 
         try {
@@ -67,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     
-
+    //permisos para leer los datos de contacto
     public void onRequestPermissionsResult(int requestCode, String[] permissions,int[] grantResults) {
         if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -79,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //metodos para botones principales
     public void CONTACTOS(View view){
         adapter.setF();
         adapter=new ContactoAdapter(view.getContext(), contacto);
@@ -90,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
     }
 
+    //Metodos para favoritos
     public void agregar_favorito(Contacto list_fav){
         contacto2.add(list_fav);
     }
@@ -108,5 +137,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Metodo de busqueda
+    private void Buscar(String txt){
+        ArrayList<Contacto> contacto3 = new ArrayList<>();
+        for(Contacto item : contacto){
+            if(item.getNombre().toLowerCase().contains(txt.toLowerCase())){
+                contacto3.add(item);
+            }
+        }
+        adapter.Busqueda(contacto3);
+    }
 
 }

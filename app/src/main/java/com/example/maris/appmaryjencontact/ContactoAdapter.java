@@ -34,10 +34,6 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
         view = inflater.inflate(R.layout.cardviewcontact,parent,false);
 
         return new ContactoViewHolder(view);
-
-
-        /*View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardviewcontact, parent,false);
-        return (new ContactoViewHolder(view));*/
     }
 
     public void onBindViewHolder(final ContactoViewHolder holder, final int position){
@@ -46,6 +42,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
         holder.nombre.setText((contacto.get(position).getNombre()));
         holder.boton_informacion.setImageResource(R.drawable.informacion);
 
+        //Leyendo el click en las cardview
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +60,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
 
             }
         });
+
 
         //SECCION DE FAVORITOS
         if (contacto.get(position).isLista_favoritos()){
@@ -116,19 +114,26 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
 
     }
 
+    //Busqueda
+    public void Busqueda(ArrayList<Contacto> busqueda) {
+        contacto = busqueda;
+        notifyDataSetChanged();
+    }
+
     public boolean Listafavorito(int posicion){
         contacto.get(posicion).setLista_favoritos(!contacto.get(posicion).isLista_favoritos());
         return contacto.get(posicion).isLista_favoritos();
     }
 
+    //para botones principales
     public void setT(){
         favorito = true;
     }
-
     public void setF(){
         favorito = false;
     }
 
+    //Metodo utilizado en favoritos
     public boolean Addfavorito(){
         return favorito;
     }
