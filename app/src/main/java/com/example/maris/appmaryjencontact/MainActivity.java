@@ -1,5 +1,7 @@
 package com.example.maris.appmaryjencontact;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -34,11 +36,6 @@ public class MainActivity extends AppCompatActivity {
     Button favoritos;
 
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
-    /*CircleImageView imagenc;
-    TextView nombrec;
-    TextView email;
-    ImageButton compartir;
-    ImageButton llamada;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,16 +47,28 @@ public class MainActivity extends AppCompatActivity {
         contactos = findViewById(R.id.btncontac);
         favoritos = findViewById(R.id.btnfavorite);
 
-        rv=findViewById(R.id.recycler);
-        rv.setHasFixedSize(true);
 
-        lm=new LinearLayoutManager(this);
-        rv.setLayoutManager(lm);
 
         addContacts();
         //ContactosQuemados();
 
-        adapter=new ContactoAdapter(contacto, this);
+        contacto.add(new Contacto("Marisol","00094716","77951321",R.drawable.contact));
+        contacto.add(new Contacto("Gerardo","00094716","77951321",R.drawable.contact));
+        contacto.add(new Contacto("Mami","00094716","77951321",R.drawable.contact));
+        contacto.add(new Contacto("Papá","00094716","77951321",R.drawable.contact));
+        contacto.add(new Contacto("Jenny","00094716","77951321",R.drawable.contact));
+        contacto.add(new Contacto("Abuelo","00094716","77951321",R.drawable.contact));
+        contacto.add(new Contacto("Bryan","00094716","77951321",R.drawable.contact));
+        contacto.add(new Contacto("Virginia","00094716","77951321",R.drawable.contact));
+
+        rv=findViewById(R.id.recycler);
+        adapter=new ContactoAdapter(this, contacto);
+        lm=new LinearLayoutManager(this);
+        rv.setLayoutManager(new GridLayoutManager(this,3));
+
+        rv.setHasFixedSize(true);
+
+
 
         //LEYENDO LOS CONTACTOS
 
@@ -133,12 +142,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void CONTACTOS(View view){
         adapter.setF();
-        adapter=new ContactoAdapter(contacto, view.getContext());
+        adapter=new ContactoAdapter(view.getContext(), contacto);
         rv.setAdapter(adapter);
     }
     public void FAVORITO(View view){
         adapter.setT();
-        adapter=new ContactoAdapter(contacto2, view.getContext());
+        adapter=new ContactoAdapter(view.getContext(), contacto2);
         rv.setAdapter(adapter);
     }
 
@@ -155,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         }
         contacto2.remove(cont);
         if (adapter.Addfavorito()){
-            adapter=new ContactoAdapter(contacto2, this);
+            adapter=new ContactoAdapter(this, contacto2);
             rv.setAdapter(adapter);
         }
     }

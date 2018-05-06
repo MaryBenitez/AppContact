@@ -1,5 +1,7 @@
 package com.example.maris.appmaryjencontact;
 
+import android.provider.ContactsContract;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -10,8 +12,9 @@ public class Contacto implements Serializable {
     private String numero;
     public static String KEY = "KEY";
     private int imagencontacto;
-    private String imagencontacto2;
     private boolean lista_favoritos;
+
+    public Contacto(){}
 
     public Contacto(String nombre, String email, String numero, int imagencontacto) {
         this.nombre = nombre;
