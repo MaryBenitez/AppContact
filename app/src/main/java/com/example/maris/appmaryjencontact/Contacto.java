@@ -10,11 +10,10 @@ public class Contacto implements Serializable {
     private String nombre;
     private String email;
     private String numero;
-    public static String KEY = "KEY";
     private int imagencontacto;
+    private String img;
     private boolean lista_favoritos;
 
-    public Contacto(){}
 
     public Contacto(String nombre, String email, String numero, int imagencontacto) {
         this.nombre = nombre;
@@ -23,6 +22,7 @@ public class Contacto implements Serializable {
         this.imagencontacto = imagencontacto;
         lista_favoritos = false;
     }
+
 
     public String getNombre() {
         return nombre;
@@ -50,6 +50,14 @@ public class Contacto implements Serializable {
     }
     public void setImagencontacto(int imagencontacto) {
         this.imagencontacto = imagencontacto;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public boolean isLista_favoritos() {
