@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Contacto implements Serializable {
 
     private String nombre;
-    private String email;
+    //private String email;
     private String numero;
     public static String KEY = "KEY";
     private int imagencontacto;
@@ -16,9 +16,9 @@ public class Contacto implements Serializable {
 
     public Contacto(){}
 
-    public Contacto(String nombre, String email, String numero, int imagencontacto) {
+    public Contacto(String nombre, String numero, int imagencontacto) {
         this.nombre = nombre;
-        this.email = email;
+        //this.email = email;
         this.numero = numero;
         this.imagencontacto = imagencontacto;
         lista_favoritos = false;
@@ -31,12 +31,12 @@ public class Contacto implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getEmail() {
+    /*public String getEmail() {
         return email;
     }
     public void setEmail(String email) {
         this.email = email;
-    }
+    }*/
 
     public String getNumero() {
         return numero;

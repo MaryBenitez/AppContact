@@ -27,7 +27,7 @@ public class DetalleContacto extends AppCompatActivity {
 
         img_contacto.setImageResource(contacto.getImagencontacto());
         nombre.setText(contacto.getNombre());
-        email.setText(contacto.getEmail());
+        //email.setText(contacto.getEmail());
 
     }
 }

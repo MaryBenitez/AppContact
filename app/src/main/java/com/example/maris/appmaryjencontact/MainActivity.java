@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -42,30 +43,29 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        addContacts();
+
         contacto = new ArrayList<>();
         contacto2 = new ArrayList<>();
         contactos = findViewById(R.id.btncontac);
         favoritos = findViewById(R.id.btnfavorite);
 
-
-
-        addContacts();
         //ContactosQuemados();
 
-        contacto.add(new Contacto("Marisol","00094716","77951321",R.drawable.contact));
-        contacto.add(new Contacto("Gerardo","00094716","77951321",R.drawable.contact));
-        contacto.add(new Contacto("Mami","00094716","77951321",R.drawable.contact));
-        contacto.add(new Contacto("Papá","00094716","77951321",R.drawable.contact));
-        contacto.add(new Contacto("Jenny","00094716","77951321",R.drawable.contact));
-        contacto.add(new Contacto("Abuelo","00094716","77951321",R.drawable.contact));
-        contacto.add(new Contacto("Bryan","00094716","77951321",R.drawable.contact));
-        contacto.add(new Contacto("Virginia","00094716","77951321",R.drawable.contact));
+        contacto.add(new Contacto("Marisol","77951321",R.drawable.contact));
+        contacto.add(new Contacto("Gerardo","77951321",R.drawable.contact));
+        contacto.add(new Contacto("Mami","07951321",R.drawable.contact));
+        contacto.add(new Contacto("Papá","07951321",R.drawable.contact));
+        contacto.add(new Contacto("Jenny","77951321",R.drawable.contact));
+        contacto.add(new Contacto("A","00091321",R.drawable.contact));
+        contacto.add(new Contacto("Bryan","77951321",R.drawable.contact));
+        contacto.add(new Contacto("Virginia","77951321",R.drawable.contact));
 
         rv=findViewById(R.id.recycler);
         adapter=new ContactoAdapter(this, contacto);
         lm=new LinearLayoutManager(this);
         rv.setLayoutManager(new GridLayoutManager(this,3));
-
+        rv.setAdapter(adapter);
         rv.setHasFixedSize(true);
 
 
@@ -108,9 +108,10 @@ public class MainActivity extends AppCompatActivity {
             Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME+" ASC");
             while (phones.moveToNext()) {
                 String nombre = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-                String email = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
+                //String email = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
                 String numero = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                lista.add(new Contacto(nombre, email, numero,R.drawable.contact));
+                Log.d("LEL",nombre+" " +numero);
+                lista.add(new Contacto(nombre, numero,R.drawable.contact));
             }
             phones.close();
         } catch (Exception e) {
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void ContactosQuemados(){
+    /*public void ContactosQuemados(){
         String TAG = "Mensaje";
         contacto = new ArrayList<>();
 
@@ -138,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         contacto.add(new Contacto("Marisol E\n","00094716@uca.edu.sv\n","77951321",R.drawable.contact));
         contacto.add(new Contacto("Marisol V\n","00094716@uca.edu.sv \n","77951321",R.drawable.contact));
 
-    }
+    }*/
 
     public void CONTACTOS(View view){
         adapter.setF();
