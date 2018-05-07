@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Button favoritos;
 
     EditText buscar;
-    
+
 
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 
@@ -40,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
         contacto = new ArrayList<>();
         contacto2 = new ArrayList<>();
-        buscar = findViewById(R.id.busqueda);
         contactos = findViewById(R.id.btncontac);
         favoritos = findViewById(R.id.btnfavorite);
+
+        buscar = findViewById(R.id.busqueda);
 
         addContacts();
 
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             while (phones.moveToNext()) {
 
                  String nombre = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-                 String email = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
+                 String email = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS));
                  String numero = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                  contacto.add(new Contacto(nombre,email,numero,R.drawable.contact));
 
@@ -98,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, String[] permissions,int[] grantResults) {
         if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission is granted
+                // Permiso permitido
                 addContacts();
             } else {
                 Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
