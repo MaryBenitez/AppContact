@@ -1,5 +1,6 @@
 package com.example.maris.appmaryjencontact;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.provider.ContactsContract;
@@ -11,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,10 +47,19 @@ public class MainActivity extends AppCompatActivity {
 
         buscar = findViewById(R.id.busqueda);
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         addContacts();
 
         rv=findViewById(R.id.recycler);
-        adapter=new ContactoAdapter(this, contacto);
+        adapter=new ContactoAdapter(this, contacto){
+
+            @Override
+            public void onclickCardView(Contacto contacto) {
+                RecibiendoIntent(contacto);
+            }
+
+        };
         lm=new LinearLayoutManager(this);
         rv.setLayoutManager(new GridLayoutManager(this,3));
         rv.setAdapter(adapter);
@@ -110,13 +121,37 @@ public class MainActivity extends AppCompatActivity {
     //metodos para botones principales
     public void CONTACTOS(View view){
         adapter.setF();
-        adapter=new ContactoAdapter(view.getContext(), contacto);
+
+        contactos.setBackgroundColor(getResources().getColor(R.color.select));
+        favoritos.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+
+        adapter=new ContactoAdapter(view.getContext(), contacto){
+
+            @Override
+            public void onclickCardView(Contacto contacto) {
+                RecibiendoIntent(contacto);
+            }
+
+        };
         rv.setAdapter(adapter);
     }
     public void FAVORITO(View view){
         adapter.setT();
-        adapter=new ContactoAdapter(view.getContext(), contacto2);
+
+        contactos.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        favoritos.setBackgroundColor(getResources().getColor(R.color.select));
+
+        adapter=new ContactoAdapter(view.getContext(), contacto2){
+
+            @Override
+            public void onclickCardView(Contacto contacto) {
+                RecibiendoIntent(contacto);
+            }
+
+        };
         rv.setAdapter(adapter);
+
+
     }
 
     //Metodos para favoritos
@@ -133,7 +168,14 @@ public class MainActivity extends AppCompatActivity {
         }
         contacto2.remove(cont);
         if (adapter.Addfavorito()){
-            adapter=new ContactoAdapter(this, contacto2);
+            adapter=new ContactoAdapter(this, contacto2){
+
+                @Override
+                public void onclickCardView(Contacto contacto) {
+                    RecibiendoIntent(contacto);
+                }
+
+            };
             rv.setAdapter(adapter);
         }
     }
@@ -147,6 +189,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         adapter.Busqueda(contacto3);
+    }
+
+    public void RecibiendoIntent(Contacto contacto){
+
+        Intent intent = new Intent(getApplicationContext(),ContactoActivity.class);
+        intent.putExtra(Contacto.KEY_CONTACT,contacto);
+        startActivity(intent);
+
     }
 
 }

@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.drawable" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -20,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ContactoActivity"></activity>
+        <activity android:name=".ContactoActivity" />
+        <activity android:name=".AgregarActivity"></activity>
     </application>
 
 </manifest>

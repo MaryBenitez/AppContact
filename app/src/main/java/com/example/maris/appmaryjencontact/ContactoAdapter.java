@@ -16,7 +16,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.ContactoViewHolder>{
+public abstract class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.ContactoViewHolder>{
 
     private ArrayList<Contacto> contacto;
     private Context context;
@@ -40,24 +40,13 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
 
         holder.imagen_de_contacto.setImageResource(contacto.get(position).getImagencontacto());
         holder.nombre.setText((contacto.get(position).getNombre()));
-        holder.boton_informacion.setImageResource(R.drawable.informacion);
+//        holder.boton_informacion.setImageResource(R.drawable.informacion);
 
         //Leyendo el click en las cardview
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent= new Intent(context,ContactoActivity.class);
-
-                //pasando datos para ContactoActivity
-                intent.putExtra("Nombre",contacto.get(position).getNombre());
-                intent.putExtra("Numero",contacto.get(position).getNumero());
-                intent.putExtra("Email",contacto.get(position).getEmail());
-                intent.putExtra("Imagen",contacto.get(position).getImagencontacto());
-
-                //Iniciando la actividad
-                context.startActivity(intent);
-
+                onclickCardView(contacto.get(position));
             }
         });
 
@@ -107,7 +96,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
             cardView=itemView.findViewById(R.id.card_view);
             imagen_de_contacto=itemView.findViewById(R.id.foto);
             nombre=itemView.findViewById(R.id.nombrecontacto);
-            boton_informacion=itemView.findViewById(R.id.btn_informacion);
+            //boton_informacion=itemView.findViewById(R.id.btn_informacion);
             boton_favorito=itemView.findViewById(R.id.btn_favorito);
 
         }
@@ -138,6 +127,6 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
         return favorito;
     }
 
-
+    public abstract void onclickCardView(Contacto contacto);
 
 }
