@@ -93,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 
+            String repetido = "";
+
             Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME+" ASC");
 
             while (phones.moveToNext()) {
@@ -100,7 +102,12 @@ public class MainActivity extends AppCompatActivity {
                  String nombre = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
                  String email = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS));
                  String numero = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                 contacto.add(new Contacto(nombre,email,numero,R.drawable.contact));
+
+                 //If para evitar que se repitan los contactos
+                if(!(repetido.equals(nombre))){
+                        contacto.add(new Contacto(nombre,email,numero,R.drawable.contact));
+                    }
+                repetido=nombre;
 
             }
             phones.close();
