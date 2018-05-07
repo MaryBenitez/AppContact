@@ -51,8 +51,8 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.Contac
 
                 //pasando datos para ContactoActivity
                 intent.putExtra("Nombre",contacto.get(position).getNombre());
-                intent.putExtra("Email",contacto.get(position).getEmail());
                 intent.putExtra("Numero",contacto.get(position).getNumero());
+                intent.putExtra("Email",contacto.get(position).getEmail());
                 intent.putExtra("Imagen",contacto.get(position).getImagencontacto());
 
                 //Iniciando la actividad

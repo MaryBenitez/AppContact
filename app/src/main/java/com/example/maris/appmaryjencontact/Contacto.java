@@ -1,18 +1,21 @@
 package com.example.maris.appmaryjencontact;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.provider.ContactsContract;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Contacto implements Serializable {
+public class Contacto implements Parcelable{
 
     private String nombre;
     private String email;
     private String numero;
     private int imagencontacto;
-    private String img;
     private boolean lista_favoritos;
+
+    public static String KEY_CONTACT = "KEY_CONTACT";
 
 
     public Contacto(String nombre, String email, String numero, int imagencontacto) {
@@ -23,6 +26,25 @@ public class Contacto implements Serializable {
         lista_favoritos = false;
     }
 
+    protected Contacto(Parcel in) {
+        nombre = in.readString();
+        email = in.readString();
+        numero = in.readString();
+        imagencontacto = in.readInt();
+        lista_favoritos = in.readByte() != 0;
+    }
+
+    public static final Creator<Contacto> CREATOR = new Creator<Contacto>() {
+        @Override
+        public Contacto createFromParcel(Parcel in) {
+            return new Contacto(in);
+        }
+
+        @Override
+        public Contacto[] newArray(int size) {
+            return new Contacto[size];
+        }
+    };
 
     public String getNombre() {
         return nombre;
@@ -52,18 +74,25 @@ public class Contacto implements Serializable {
         this.imagencontacto = imagencontacto;
     }
 
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
 
     public boolean isLista_favoritos() {
         return lista_favoritos;
     }
     public void setLista_favoritos(boolean lista_favoritos) {
         this.lista_favoritos = lista_favoritos;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(nombre);
+        parcel.writeString(email);
+        parcel.writeString(numero);
+        parcel.writeInt(imagencontacto);
+        parcel.writeByte((byte)(lista_favoritos?1:0));
     }
 }

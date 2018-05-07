@@ -76,7 +76,7 @@
             android:src="@drawable/compartir"
             android:padding="10dp"
             android:scaleType="fitXY"
-            android:onClick="compartir"/>
+            android:onClick="Compartir"/>
 
     </LinearLayout>
 
