@@ -3,5 +3,14 @@
 
     <string name="contacto">Contacts</string>
     <string name="favoritos">Favorites</string>
+    <string name="agregar_favoritos">Add Favorites</string>
+    <string name="eliminar_favoritos">Remove Favorites</string>
+    <string name="nombreA">Name:</string>
+    <string name="ingrese_nombre">Insert name</string>
+    <string name="emailA">E-mail:</string>
+    <string name="ingrese_e_mailA">Insert e-mail</string>
+    <string name="numeroA">Number:</string>
+    <string name="ingrese_numeroA">Insert number</string>
+    <string name="AGREGAR">ADD</string>
 
 </resources>

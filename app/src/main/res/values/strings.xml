@@ -2,4 +2,14 @@
     <string name="app_name">AppMaryJenContact</string>
     <string name="contacto">Contacto</string>
     <string name="favoritos">Favoritos</string>
+    <string name="agregar_favoritos">Agregado a Favoritos</string>
+    <string name="eliminar_favoritos">Eliminado de Favoritos</string>
+    <string name="nombreA">Nombre:</string>
+    <string name="ingrese_nombre">Ingrese nombre</string>
+    <string name="emailA">Correo:</string>
+    <string name="ingrese_e_mailA">Ingrese correo</string>
+    <string name="numeroA">Numero:</string>
+    <string name="ingrese_numeroA">Ingrese numero</string>
+    <string name="AGREGAR">AGREGAR</string>
+
 </resources>

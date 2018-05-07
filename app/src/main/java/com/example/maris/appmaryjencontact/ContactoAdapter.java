@@ -40,7 +40,6 @@ public abstract class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapt
 
         holder.imagen_de_contacto.setImageResource(contacto.get(position).getImagencontacto());
         holder.nombre.setText((contacto.get(position).getNombre()));
-//        holder.boton_informacion.setImageResource(R.drawable.informacion);
 
         //Leyendo el click en las cardview
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -65,11 +64,11 @@ public abstract class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapt
                 if (Listafavorito(position)){
                     holder.boton_favorito.setImageResource(R.drawable.fav_mar);
                     ((MainActivity)context).agregar_favorito(contacto.get(position));
-                    Toast.makeText(view.getContext(),"Agregado a Favorito",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(),R.string.agregar_favoritos,Toast.LENGTH_SHORT).show();
                 }
                 else {
                     holder.boton_favorito.setImageResource(R.drawable.fav);
-                    Toast.makeText(view.getContext(),"Eliminado Favorito",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(),R.string.eliminar_favoritos,Toast.LENGTH_SHORT).show();
                     ((MainActivity)context).eliminar_favorito(contacto.get(position).getNombre());
                 }
             }

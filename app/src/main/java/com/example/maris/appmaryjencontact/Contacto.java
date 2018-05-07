@@ -17,6 +17,7 @@ public class Contacto implements Parcelable{
 
     public static String KEY_CONTACT = "KEY_CONTACT";
 
+    public Contacto(){}
 
     public Contacto(String nombre, String email, String numero, int imagencontacto) {
         this.nombre = nombre;

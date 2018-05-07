@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
     EditText buscar;
 
+    Contacto agregar;
+    public static final int agregar_contacto = 0;
+
 
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 
@@ -191,11 +194,20 @@ public class MainActivity extends AppCompatActivity {
         adapter.Busqueda(contacto3);
     }
 
+    //Metodo que funciona cuando se clickea el cardview
     public void RecibiendoIntent(Contacto contacto){
 
         Intent intent = new Intent(getApplicationContext(),ContactoActivity.class);
         intent.putExtra(Contacto.KEY_CONTACT,contacto);
         startActivity(intent);
+
+    }
+
+    public void Agregar(View view){
+
+        Intent intent = new Intent(this, AgregarActivity.class);
+        agregar = new Contacto();
+        startActivityForResult(intent,agregar_contacto);
 
     }
 
