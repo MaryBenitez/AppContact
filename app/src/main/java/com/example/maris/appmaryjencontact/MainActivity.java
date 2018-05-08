@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     Contacto agregar;
     public static final int agregarContacto = 0;
 
-
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 
     @Override
@@ -216,18 +215,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode==agregarContacto){
+        switch (requestCode) {
+            case agregarContacto:
+                if(resultCode == Activity.RESULT_OK) {
+                    Contacto c = data.getParcelableExtra(AgregarActivity.EXTRA_CONTACT);
+                    contacto.add(c);
 
-            if (requestCode== Activity.RESULT_OK){
-
-                Contacto contacto3 = data.getParcelableExtra(AgregarActivity.EXTRA_CONTACT);
-                contacto.add(contacto3);
-
-            }
-
-            agregar = null;
-
+                }
+                agregar = null;
+                break;
         }
+        rv.setAdapter(adapter);
 
     }
 

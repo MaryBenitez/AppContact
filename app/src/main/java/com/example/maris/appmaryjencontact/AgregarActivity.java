@@ -46,6 +46,7 @@ public class AgregarActivity extends AppCompatActivity {
     //Metodo para agregar
     public void agregar_contacto(View view){
 
+        contacto.setImagencontacto(R.drawable.contact);
         contacto.setNombre(nombreA.getText().toString());
         contacto.setEmail(emailA.getText().toString());
         contacto.setNumero(numeroA.getText().toString());
