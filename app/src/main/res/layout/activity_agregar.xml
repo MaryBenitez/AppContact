@@ -21,7 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:background="@color/black"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,28 +45,6 @@
             android:layout_height="wrap_content"
             android:hint="@string/ingrese_nombre" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_margin="15dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/emailA"
-            android:textColor="@color/black"
-            android:textAlignment="center"/>
-
-        <EditText
-            android:id="@+id/addemail"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content"
-            android:hint="@string/ingrese_e_mailA"/>
     </LinearLayout>
 
     <LinearLayout
@@ -100,6 +79,6 @@
         android:layout_margin="9dp"
         android:onClick="agregar_contacto"
         android:textColor="@color/letra"
-        android:background="@color/fondo"/>
+        android:background="@color/fondo" />
 
 </LinearLayout>

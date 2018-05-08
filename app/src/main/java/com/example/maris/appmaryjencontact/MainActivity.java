@@ -99,12 +99,11 @@ public class MainActivity extends AppCompatActivity {
             while (phones.moveToNext()) {
 
                  String nombre = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-                 String email = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Email.ADDRESS));
                  String numero = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
                  //If para evitar que se repitan los contactos
                 if(!(repetido.equals(nombre))){
-                        contacto.add(new Contacto(nombre,email,numero,R.drawable.contact));
+                        contacto.add(new Contacto(nombre,numero,R.drawable.contact));
                     }
                 repetido=nombre;
 
@@ -220,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
                 if(resultCode == Activity.RESULT_OK) {
                     Contacto c = data.getParcelableExtra(AgregarActivity.EXTRA_CONTACT);
                     contacto.add(c);
+                    Toast.makeText(getApplicationContext(),R.string.contacto_agregado,Toast.LENGTH_SHORT).show();
 
                 }
                 agregar = null;

@@ -2,6 +2,7 @@ package com.example.maris.appmaryjencontact;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,11 +16,11 @@ public class AgregarActivity extends AppCompatActivity {
 
     private CircleImageView imgcontactN;
     private EditText nombreA;
-    private EditText emailA;
     private EditText numeroA;
 
     private Contacto contacto;
     public static final String EXTRA_CONTACT = "EXTRA_CONTACT";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,6 @@ public class AgregarActivity extends AppCompatActivity {
 
         imgcontactN=findViewById(R.id.foto);
         nombreA=findViewById(R.id.addname);
-        emailA=findViewById(R.id.addemail);
         numeroA=findViewById(R.id.addnum);
 
         //Recibiendo datos
@@ -37,7 +37,6 @@ public class AgregarActivity extends AppCompatActivity {
 
         //Seteando datos
         nombreA.setText(contacto.getNombre());
-        emailA.setText(contacto.getEmail());
         numeroA.setText(contacto.getNumero());
         imgcontactN.setImageResource(R.drawable.contact);
 
@@ -48,7 +47,6 @@ public class AgregarActivity extends AppCompatActivity {
 
         contacto.setImagencontacto(R.drawable.contact);
         contacto.setNombre(nombreA.getText().toString());
-        contacto.setEmail(emailA.getText().toString());
         contacto.setNumero(numeroA.getText().toString());
 
         Intent returnIntent = new Intent();

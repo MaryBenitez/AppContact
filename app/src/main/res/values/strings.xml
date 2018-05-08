@@ -12,5 +12,6 @@
     <string name="ingrese_numeroA">Ingrese numero</string>
     <string name="AGREGAR">AGREGAR</string>
     <string name="busqueda">BUSQUEDA</string>
+    <string name="contacto_agregado">Contacto Agregado</string>
 
 </resources>

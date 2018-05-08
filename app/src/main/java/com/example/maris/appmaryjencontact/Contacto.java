@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class Contacto implements Parcelable{
 
     private String nombre;
-    private String email;
     private String numero;
     private int imagencontacto;
     private boolean lista_favoritos;
@@ -19,9 +18,8 @@ public class Contacto implements Parcelable{
 
     public Contacto(){}
 
-    public Contacto(String nombre, String email, String numero, int imagencontacto) {
+    public Contacto(String nombre, String numero, int imagencontacto) {
         this.nombre = nombre;
-        this.email = email;
         this.numero = numero;
         this.imagencontacto = imagencontacto;
         lista_favoritos = false;
@@ -29,7 +27,6 @@ public class Contacto implements Parcelable{
 
     protected Contacto(Parcel in) {
         nombre = in.readString();
-        email = in.readString();
         numero = in.readString();
         imagencontacto = in.readInt();
         lista_favoritos = in.readByte() != 0;
@@ -52,13 +49,6 @@ public class Contacto implements Parcelable{
     }
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getNumero() {
@@ -91,7 +81,6 @@ public class Contacto implements Parcelable{
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(nombre);
-        parcel.writeString(email);
         parcel.writeString(numero);
         parcel.writeInt(imagencontacto);
         parcel.writeByte((byte)(lista_favoritos?1:0));

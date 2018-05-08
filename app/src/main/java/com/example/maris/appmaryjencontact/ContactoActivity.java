@@ -18,9 +18,7 @@ public class ContactoActivity extends AppCompatActivity {
 
     private CircleImageView imgcontact;
     private TextView nombrec;
-    private TextView emailc;
     private TextView numeroc;
-
     private ImageButton compartir;
     private ImageButton llamada;
 
@@ -33,7 +31,6 @@ public class ContactoActivity extends AppCompatActivity {
 
         imgcontact = findViewById(R.id.foto);
         nombrec = findViewById(R.id.nombrecontactoA);
-        emailc = findViewById(R.id.emailcA);
         numeroc = findViewById(R.id.numeroA);
 
         compartir = findViewById(R.id.compartir);
@@ -45,7 +42,6 @@ public class ContactoActivity extends AppCompatActivity {
 
         //Seteando valores
         nombrec.setText(contacto.getNombre());
-        emailc.setText(contacto.getEmail());
         numeroc.setText(contacto.getNumero());
         imgcontact.setImageResource(contacto.getImagencontacto());
         numC = contacto.getNumero();
@@ -70,9 +66,7 @@ public class ContactoActivity extends AppCompatActivity {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
 
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "Nombre: " + contacto.getNombre() + "\n" +
-                                                     "Email: " + contacto.getEmail() + "\n" +
-                                                     "Numero: " + contacto.getNumero());
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Nombre: " + contacto.getNombre() + "\n"+"Numero: " + contacto.getNumero());
 
         sendIntent.setType("text/plain");
         Intent.createChooser(sendIntent, "compartir");

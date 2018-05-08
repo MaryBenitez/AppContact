@@ -13,5 +13,6 @@
     <string name="ingrese_numeroA">Insert number</string>
     <string name="AGREGAR">ADD</string>
     <string name="busqueda">SEARCH</string>
+    <string name="contacto_agregado">Contacts has been added</string>
 
 </resources>
