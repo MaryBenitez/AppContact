@@ -1,5 +1,6 @@
 package com.example.maris.appmaryjencontact;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -13,7 +14,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     EditText buscar;
 
     Contacto agregar;
-    public static final int agregar_contacto = 0;
+    public static final int agregarContacto = 0;
 
 
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        addContacts();
+        Extraer_Contacto();
 
         rv=findViewById(R.id.recycler);
         adapter=new ContactoAdapter(this, contacto){
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Metodo para extraer contactos
-    public void addContacts() {
+    public void Extraer_Contacto() {
 
         try {
 
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permiso permitido
-                addContacts();
+                Extraer_Contacto();
             } else {
                 Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
             }
@@ -210,11 +210,33 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    //Metodo para añadir a la lista de contacto
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode==agregarContacto){
+
+            if (requestCode== Activity.RESULT_OK){
+
+                Contacto contacto3 = data.getParcelableExtra(AgregarActivity.EXTRA_CONTACT);
+                contacto.add(contacto3);
+
+            }
+
+            agregar = null;
+
+        }
+
+    }
+
+    //Metodo que muestra la actividad de agregar y espera un resultado
     public void Agregar(View view){
 
         Intent intent = new Intent(this, AgregarActivity.class);
         agregar = new Contacto();
-        startActivityForResult(intent,agregar_contacto);
+        startActivityForResult(intent,agregarContacto);
 
     }
 

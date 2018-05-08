@@ -73,7 +73,8 @@
             android:layout_weight="2"
             android:layout_height="40dp"
             android:scaleType="fitXY"
-            android:src="@drawable/agregar" />
+            android:src="@drawable/agregar"
+            android:onClick="Agregar"/>
 
         <View
             android:layout_width="0dp"
