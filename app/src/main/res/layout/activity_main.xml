@@ -7,7 +7,7 @@
     android:id="@+id/LL"
     android:orientation="vertical"
     android:padding="8dp"
-    android:background="@color/gray">
+    android:background="@color/letra">
 
     <LinearLayout
         android:id="@id/LL1"
@@ -21,7 +21,7 @@
             android:layout_weight="1"
             android:text="@string/contacto"
             android:onClick="CONTACTOS"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/select2"/>
 
         <View
             android:layout_width="7dp"
@@ -34,7 +34,7 @@
             android:layout_weight="1"
             android:text="@string/favoritos"
             android:onClick="FAVORITO"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/select2"/>
 
     </LinearLayout>
 
@@ -58,9 +58,9 @@
         <EditText
             android:id="@+id/busqueda"
             android:layout_width="0dp"
-            android:layout_weight="10"
+            android:layout_weight="15"
             android:layout_height="wrap_content"
-            android:hint="BUSQUEDA"/>
+            android:hint="@string/busqueda"/>
 
         <View
             android:layout_width="0dp"
@@ -71,10 +71,11 @@
             android:id="@+id/btn_favorito"
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:scaleType="fitXY"
             android:src="@drawable/agregar"
-            android:onClick="Agregar"/>
+            android:onClick="Agregar"
+            android:background="@color/letra"/>
 
         <View
             android:layout_width="0dp"

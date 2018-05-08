@@ -12,5 +12,6 @@
     <string name="numeroA">Number:</string>
     <string name="ingrese_numeroA">Insert number</string>
     <string name="AGREGAR">ADD</string>
+    <string name="busqueda">SEARCH</string>
 
 </resources>

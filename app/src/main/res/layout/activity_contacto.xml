@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ContactoActivity"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/fondo2">
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -24,7 +25,8 @@
         android:textSize="25sp"
         android:textAlignment="center"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/emailcA"
@@ -34,7 +36,8 @@
         android:textSize="20sp"
         android:textAlignment="center"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/numeroA"
@@ -44,7 +47,8 @@
         android:textSize="20sp"
         android:textAlignment="center"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"/>
 
 
     <LinearLayout
@@ -52,7 +56,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="15dp"
+        android:background="@color/fondo2">
 
         <ImageButton
             android:id="@+id/llamar"
@@ -60,10 +65,11 @@
             android:layout_height="80dp"
             android:src="@drawable/call"
             android:padding="15dp"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY"
+            android:background="@color/fondo2"/>
 
         <View
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="90dp"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
@@ -76,7 +82,8 @@
             android:src="@drawable/compartir"
             android:padding="10dp"
             android:scaleType="fitXY"
-            android:onClick="Compartir"/>
+            android:onClick="Compartir"
+            android:background="@color/fondo2"/>
 
     </LinearLayout>
 

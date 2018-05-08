@@ -86,7 +86,6 @@ public abstract class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapt
         CardView cardView;
         CircleImageView imagen_de_contacto;
         TextView nombre;
-        ImageButton boton_informacion;
         ImageButton boton_favorito;
 
         public ContactoViewHolder(View itemView){
@@ -95,7 +94,6 @@ public abstract class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapt
             cardView=itemView.findViewById(R.id.card_view);
             imagen_de_contacto=itemView.findViewById(R.id.foto);
             nombre=itemView.findViewById(R.id.nombrecontacto);
-            //boton_informacion=itemView.findViewById(R.id.btn_informacion);
             boton_favorito=itemView.findViewById(R.id.btn_favorito);
 
         }

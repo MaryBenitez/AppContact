@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.setF();
 
         contactos.setBackgroundColor(getResources().getColor(R.color.select));
-        favoritos.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        favoritos.setBackgroundColor(getResources().getColor(R.color.select2));
 
         adapter=new ContactoAdapter(view.getContext(), contacto){
 
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
     public void FAVORITO(View view){
         adapter.setT();
 
-        contactos.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        contactos.setBackgroundColor(getResources().getColor(R.color.select2));
         favoritos.setBackgroundColor(getResources().getColor(R.color.select));
 
         adapter=new ContactoAdapter(view.getContext(), contacto2){
