@@ -1,10 +1,14 @@
 package com.example.maris.appmaryjencontact;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +59,16 @@ public class MainActivity extends AppCompatActivity {
         Extraer_Contacto();
 
         rv=findViewById(R.id.recycler);
+
+        //Pide el permiso
+        int permissionCheck = ContextCompat.checkSelfPermission(this,Manifest.permission.READ_CONTACTS);
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED){
+            Extraer_Contacto();
+
+        }else {
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_CONTACTS},PERMISSIONS_REQUEST_READ_CONTACTS);
+        }
+
         adapter=new ContactoAdapter(this, contacto){
 
             @Override
@@ -114,15 +129,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     
-    //permisos para leer los datos de contacto
+    //Verifica permisos
     public void onRequestPermissionsResult(int requestCode, String[] permissions,int[] grantResults) {
+
         if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permiso permitido
                 Extraer_Contacto();
+                rv.setAdapter(adapter);
+                Toast.makeText(this, "Read Contacts permission granted", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Read Contacts permission denied", Toast.LENGTH_SHORT).show();
             }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 
@@ -237,5 +256,6 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent,agregarContacto);
 
     }
+
 
 }
